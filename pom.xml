@@ -1,32 +1,45 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-      <groupId>ning.maven</groupId>
-      <artifactId>base</artifactId>
-      <version>1.8.1</version>
-      <relativePath />
+        <groupId>ning.maven</groupId>
+        <artifactId>base</artifactId>
+        <version>1.8.1</version>
+        <relativePath/>
     </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.ning</groupId>
-  <artifactId>li3-test</artifactId>
-  <packaging>maven-plugin</packaging>
-  <version>0.0.2-SNAPSHOT</version>
-  <name>li3-test Maven Mojo</name>
-  <url>http://maven.apache.org</url>
-  <scm>
-    <connection>scm:git:ssh://scm@source.ninginc.com/maven-plugins-li3-test</connection>
-    <url>http://git.source.ninginc.com/maven-plugins-li3-test.git</url>
-  </scm>
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>2.0</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ning</groupId>
+    <artifactId>li3-test</artifactId>
+    <packaging>maven-plugin</packaging>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>li3-test Maven Mojo</name>
+    <url>http://maven.apache.org</url>
+    <scm>
+        <connection>scm:git:ssh://scm@source.ninginc.com/maven-plugins-li3-test</connection>
+        <url>http://git.source.ninginc.com/maven-plugins-li3-test.git</url>
+    </scm>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>dev-repo</id>
+            <name>Ning Internal Repo</name>
+            <url>http://mavenrepo.ningops.net/nexus/content/repositories/plugins-releases-local</url>
+        </repository>
+        <!-- use the following if you ARE using a snapshot version. -->
+        <snapshotRepository>
+            <id>dev-repo</id>
+            <name>Ning Internal Snapshot Repo</name>
+            <url>http://mavenrepo.ningops.net/nexus/content/repositories/plugins-snapshots-local</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
