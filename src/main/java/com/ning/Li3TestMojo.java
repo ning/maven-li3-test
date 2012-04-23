@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Goal which touches a timestamp file.
+ * Goal which runs lithium php unit tests and fails if they fail.
  *
  * @goal li3-test
  * @phase test

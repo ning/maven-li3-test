@@ -62,16 +62,7 @@
       <file leaf-file-name="Li3TestMojo.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ning/Li3TestMojo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="0" selection-start="2952" selection-end="2952" vertical-scroll-proportion="1.722689">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.0">
+            <state line="17" column="65" selection-start="516" selection-end="516" vertical-scroll-proportion="0.10504202">
               <folding />
             </state>
           </provider>
@@ -351,14 +342,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.0">
+        <state line="33" column="0" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.6932773">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ning/Li3TestMojo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="0" selection-start="2952" selection-end="2952" vertical-scroll-proportion="1.722689">
+        <state line="17" column="65" selection-start="516" selection-end="516" vertical-scroll-proportion="0.10504202">
           <folding />
         </state>
       </provider>
