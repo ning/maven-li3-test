@@ -68,6 +68,9 @@ public class Li3TestMojo extends AbstractMojo
             input.close();
             while ((line = error.readLine()) != null) {
                 log.error(line);
+                if(isFailure(line)){
+                    failed = true;
+                }
             }
             error.close();
             process.waitFor();
@@ -89,7 +92,6 @@ public class Li3TestMojo extends AbstractMojo
         failureStrings.add("Fatal error:");
         for(String failureString : failureStrings){
             if(line.contains(failureString)){
-                log.error("Failure observed from line: " + line);
                 return true;
             }
         }

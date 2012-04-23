@@ -13,6 +13,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>li3-test Maven Mojo</name>
   <url>http://maven.apache.org</url>
+  <scm>
+    <connection>scm:git:ssh://scm@source.ninginc.com/maven-plugins-li3-test</connection>
+    <url>http://git.source.ninginc.com/maven-plugins-li3-test.git</url>
+  </scm>
   <dependencies>
     <dependency>
       <groupId>org.apache.maven</groupId>
