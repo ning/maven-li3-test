@@ -45,12 +45,14 @@ public class Li3TestMojo extends AbstractMojo
     {
         boolean failed = false;
         List<String> command = new ArrayList<String>();
+        String pathString;
         try {
-            command.add(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3");
+            pathString = baseDir.getCanonicalPath() + "/libraries/lithium/console/li3";
         }
         catch (IOException e) {
             throw new MojoExecutionException("Couldn't get the canonical path of the basedir");
         }
+        command.add(pathString.replace(" ", "\\ ")) ;
         command.add("test");
         command.add("app/tests");
         ProcessBuilder builder = new ProcessBuilder(command);
