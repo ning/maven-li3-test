@@ -1,5 +1,6 @@
 package com.ning;
 
+import com.google.common.base.Joiner;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -52,9 +53,11 @@ public class Li3TestMojo extends AbstractMojo
         catch (IOException e) {
             throw new MojoExecutionException("Couldn't get the canonical path of the basedir");
         }
-        command.add(pathString.replace(" ", "\\ ")) ;
+        command.add(pathString);
         command.add("test");
         command.add("app/tests");
+        log.info("Performing " + Joiner.on(" ").join(command));
+
         ProcessBuilder builder = new ProcessBuilder(command);
         try {
             Process process = builder.start();
