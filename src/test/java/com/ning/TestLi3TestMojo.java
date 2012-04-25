@@ -19,33 +19,33 @@ public class TestLi3TestMojo
     @Test
     public void testSuccess() throws IOException, InterruptedException, MojoExecutionException, MojoFailureException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
-        expect(mockProcessRunner.getInputStream()).andReturn(getInputReaderFromString("0 fails and 0 exceptions\n"));
-        expect(mockProcessRunner.getErrorStream()).andReturn(getInputReaderFromString(""));
-        mockProcessRunner.waitFor();
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 0 exceptions\n"));
+        expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
+        mockProcessBuilderWrapper.waitFor();
 
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         testingMojo.execute();
 
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
     @Test
     public void testFailOnLi3TestMultipleFails() throws IOException, InterruptedException, MojoExecutionException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
-        expect(mockProcessRunner.getInputStream()).andReturn(getInputReaderFromString("2 fails and 0 exceptions\n"));
-        expect(mockProcessRunner.getErrorStream()).andReturn(getInputReaderFromString(""));
-        mockProcessRunner.waitFor();
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("2 fails and 0 exceptions\n"));
+        expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
+        mockProcessBuilderWrapper.waitFor();
 
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         try {
             testingMojo.execute();
@@ -54,21 +54,21 @@ public class TestLi3TestMojo
         catch (MojoFailureException e) {
             assertEquals(e.getMessage(), "Lithium Tests Failed");
         }
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
     @Test
     public void testFailOnLi3TestMultipleExceptions() throws IOException, InterruptedException, MojoExecutionException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
-        expect(mockProcessRunner.getInputStream()).andReturn(getInputReaderFromString("0 fails and 4 exceptions\n"));
-        expect(mockProcessRunner.getErrorStream()).andReturn(getInputReaderFromString(""));
-        mockProcessRunner.waitFor();
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 4 exceptions\n"));
+        expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
+        mockProcessBuilderWrapper.waitFor();
 
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         try {
             testingMojo.execute();
@@ -77,21 +77,21 @@ public class TestLi3TestMojo
         catch (MojoFailureException e) {
             assertEquals(e.getMessage(), "Lithium Tests Failed");
         }
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
     @Test
     public void testFailOnLi3TestSingleFail() throws IOException, InterruptedException, MojoExecutionException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
-        expect(mockProcessRunner.getInputStream()).andReturn(getInputReaderFromString("1 fail and 0 exceptions\n"));
-        expect(mockProcessRunner.getErrorStream()).andReturn(getInputReaderFromString(""));
-        mockProcessRunner.waitFor();
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("1 fail and 0 exceptions\n"));
+        expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
+        mockProcessBuilderWrapper.waitFor();
 
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         try {
             testingMojo.execute();
@@ -100,21 +100,21 @@ public class TestLi3TestMojo
         catch (MojoFailureException e) {
             assertEquals(e.getMessage(), "Lithium Tests Failed");
         }
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
     @Test
     public void testFailOnLi3TestSingleException() throws IOException, InterruptedException, MojoExecutionException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
-        expect(mockProcessRunner.getInputStream()).andReturn(getInputReaderFromString("0 fails and 1 exception\n"));
-        expect(mockProcessRunner.getErrorStream()).andReturn(getInputReaderFromString(""));
-        mockProcessRunner.waitFor();
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 1 exception\n"));
+        expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
+        mockProcessBuilderWrapper.waitFor();
 
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         try {
             testingMojo.execute();
@@ -123,21 +123,21 @@ public class TestLi3TestMojo
         catch (MojoFailureException e) {
             assertEquals(e.getMessage(), "Lithium Tests Failed");
         }
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
     @Test
     public void testFailOnLi3TestNotFullPasses() throws IOException, InterruptedException, MojoExecutionException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
-        expect(mockProcessRunner.getInputStream()).andReturn(getInputReaderFromString("38 / 39 passes\n1 fail and 0 exceptions\n"));
-        expect(mockProcessRunner.getErrorStream()).andReturn(getInputReaderFromString(""));
-        mockProcessRunner.waitFor();
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("38 / 39 passes\n1 fail and 0 exceptions\n"));
+        expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
+        mockProcessBuilderWrapper.waitFor();
 
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         try {
             testingMojo.execute();
@@ -146,19 +146,19 @@ public class TestLi3TestMojo
         catch (MojoFailureException e) {
             assertEquals(e.getMessage(), "Lithium Tests Failed");
         }
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
     @Test
     public void testExceutionExceptionOnLi3ProcessNotStarting() throws IOException, InterruptedException, MojoFailureException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
         expectLastCall().andThrow(new IOException());
 
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         try {
             testingMojo.execute();
@@ -167,21 +167,21 @@ public class TestLi3TestMojo
         catch (MojoExecutionException e) {
             assertEquals(e.getMessage(), "Couldn't get li3 test process to start.");
         }
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
     @Test
     public void testExceutionExceptionOnLi3ProcessInterrupted() throws IOException, InterruptedException, MojoFailureException
     {
-        ProcessRunner mockProcessRunner = createMock(ProcessRunner.class);
+        ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File baseDir = new File(".");
-        mockProcessRunner.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
-        expect(mockProcessRunner.getInputStream()).andReturn(getInputReaderFromString("39 / 39 passes\n0 fails and 0 exceptions\n"));
-        expect(mockProcessRunner.getErrorStream()).andReturn(getInputReaderFromString(""));
-        mockProcessRunner.waitFor();
+        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("39 / 39 passes\n0 fails and 0 exceptions\n"));
+        expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
+        mockProcessBuilderWrapper.waitFor();
         expectLastCall().andThrow(new InterruptedException());
-        replay(mockProcessRunner);
-        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessRunner);
+        replay(mockProcessBuilderWrapper);
+        Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setBaseDir(baseDir);
         try {
             testingMojo.execute();
@@ -190,7 +190,7 @@ public class TestLi3TestMojo
         catch (MojoExecutionException e) {
             assertEquals(e.getMessage(), "Problem while waiting for li3 test process.");
         }
-        verify(mockProcessRunner);
+        verify(mockProcessBuilderWrapper);
     }
 
 

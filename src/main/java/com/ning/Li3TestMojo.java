@@ -33,19 +33,19 @@ public class Li3TestMojo extends AbstractMojo
     private Log log;
     private Pattern passesPattern;
     private Pattern failsPattern;
-    private ProcessRunner runner;
+    private ProcessBuilderWrapper builderWrapper;
 
     public Li3TestMojo()
     {
-        this(new ProcessRunner());
+        this(new ProcessBuilderWrapper());
     }
 
-    public Li3TestMojo(ProcessRunner runner)
+    public Li3TestMojo(ProcessBuilderWrapper builderWrapper)
     {
         log = getLog();
         passesPattern = Pattern.compile("(\\d+) / (\\d+) pass(es)?");
         failsPattern = Pattern.compile("(\\d+) fails? and (\\d+) exceptions?");
-        this.runner = runner;
+        this.builderWrapper = builderWrapper;
     }
 
     public void execute() throws MojoExecutionException, MojoFailureException
@@ -61,9 +61,9 @@ public class Li3TestMojo extends AbstractMojo
         }
         
         try {
-            runner.runWith(pathString, "app/tests");
-            BufferedReader input = new BufferedReader(new InputStreamReader(runner.getInputStream()));
-            BufferedReader error = new BufferedReader(new InputStreamReader(runner.getErrorStream()));
+            builderWrapper.runWith(pathString, "app/tests");
+            BufferedReader input = new BufferedReader(new InputStreamReader(builderWrapper.getInputStream()));
+            BufferedReader error = new BufferedReader(new InputStreamReader(builderWrapper.getErrorStream()));
             String line;
             while ((line = input.readLine()) != null) {
                 log.info(line);
@@ -78,7 +78,7 @@ public class Li3TestMojo extends AbstractMojo
                 failed = true;
             }
             error.close();
-            runner.waitFor();
+            builderWrapper.waitFor();
         }
         catch (IOException e) {
             throw new MojoExecutionException("Couldn't get li3 test process to start.");

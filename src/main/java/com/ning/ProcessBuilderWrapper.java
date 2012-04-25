@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessRunner
+public class ProcessBuilderWrapper
 {
     private Process p;
     public void runWith(String li3CommandPath, String testPath) throws IOException
