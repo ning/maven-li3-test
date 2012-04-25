@@ -1,6 +1,5 @@
 package com.ning;
 
-import com.google.common.base.Joiner;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -34,12 +33,19 @@ public class Li3TestMojo extends AbstractMojo
     private Log log;
     private Pattern passesPattern;
     private Pattern failsPattern;
+    private ProcessRunner runner;
 
     public Li3TestMojo()
     {
+        this(new ProcessRunner());
+    }
+
+    public Li3TestMojo(ProcessRunner runner)
+    {
         log = getLog();
-        passesPattern = Pattern.compile("(\\d+) / (\\d+) passes");
-        failsPattern = Pattern.compile("(\\d+) fails and (\\d+) exceptions");
+        passesPattern = Pattern.compile("(\\d+) / (\\d+) pass(es)?");
+        failsPattern = Pattern.compile("(\\d+) fails? and (\\d+) exceptions?");
+        this.runner = runner;
     }
 
     public void execute() throws MojoExecutionException, MojoFailureException
@@ -51,22 +57,17 @@ public class Li3TestMojo extends AbstractMojo
             pathString = baseDir.getCanonicalPath() + "/libraries/lithium/console/li3";
         }
         catch (IOException e) {
-            throw new MojoExecutionException("Couldn't get the canonical path of the basedir");
+            throw new MojoExecutionException("Couldn't get the canonical path of the basedir that we're running li3 tests in");
         }
-        command.add(pathString);
-        command.add("test");
-        command.add("app/tests");
-        log.info("Performing " + Joiner.on(" ").join(command));
-
-        ProcessBuilder builder = new ProcessBuilder(command);
+        
         try {
-            Process process = builder.start();
-            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            BufferedReader error = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            runner.runWith(pathString, "app/tests");
+            BufferedReader input = new BufferedReader(new InputStreamReader(runner.getInputStream()));
+            BufferedReader error = new BufferedReader(new InputStreamReader(runner.getErrorStream()));
             String line;
             while ((line = input.readLine()) != null) {
                 log.info(line);
-                if(isFailure(line)){
+                if (isFailure(line)) {
                     failed = true;
                 }
             }
@@ -77,15 +78,15 @@ public class Li3TestMojo extends AbstractMojo
                 failed = true;
             }
             error.close();
-            process.waitFor();
+            runner.waitFor();
         }
         catch (IOException e) {
-            throw new MojoExecutionException("Couldn't get process to start.");
+            throw new MojoExecutionException("Couldn't get li3 test process to start.");
         }
         catch (InterruptedException e) {
-            throw new MojoExecutionException("Problem while waiting for process.");
+            throw new MojoExecutionException("Problem while waiting for li3 test process.");
         }
-        if(failed){
+        if (failed) {
             throw new MojoFailureException("Lithium Tests Failed");
         }
     }
@@ -94,27 +95,31 @@ public class Li3TestMojo extends AbstractMojo
     {
         List<String> failureStrings = new ArrayList<String>();
         failureStrings.add("Fatal error:");
-        for(String failureString : failureStrings){
-            if(line.contains(failureString)){
+        for (String failureString : failureStrings) {
+            if (line.contains(failureString)) {
                 return true;
             }
         }
         Matcher passesMatcher = passesPattern.matcher(line);
-        if(passesMatcher.find()){
+        if (passesMatcher.find()) {
             int first = Integer.parseInt(passesMatcher.group(1));
             int second = Integer.parseInt(passesMatcher.group(2));
-            if (first != second){
+            if (first != second) {
                 return true;
             }
         }
         Matcher failsMatcher = failsPattern.matcher(line);
-        if(failsMatcher.find()){
+        if (failsMatcher.find()) {
             int fails = Integer.parseInt(failsMatcher.group(1));
             int exceptions = Integer.parseInt(failsMatcher.group(2));
-            if(fails != 0 || exceptions != 0){
+            if (fails != 0 || exceptions != 0) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void setBaseDir(File baseDir){
+        this.baseDir = baseDir;
     }
 }
