@@ -20,15 +20,17 @@ public class TestLi3TestMojo
     public void testSuccess() throws IOException, InterruptedException, MojoExecutionException, MojoFailureException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         testingMojo.execute();
 
         verify(mockProcessBuilderWrapper);
@@ -38,15 +40,17 @@ public class TestLi3TestMojo
     public void testFailOnLi3TestMultipleFails() throws IOException, InterruptedException, MojoExecutionException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("2 fails and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         try {
             testingMojo.execute();
             fail();
@@ -61,15 +65,17 @@ public class TestLi3TestMojo
     public void testFailOnLi3TestMultipleExceptions() throws IOException, InterruptedException, MojoExecutionException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 4 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         try {
             testingMojo.execute();
             fail();
@@ -84,15 +90,17 @@ public class TestLi3TestMojo
     public void testFailOnLi3TestSingleFail() throws IOException, InterruptedException, MojoExecutionException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("1 fail and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         try {
             testingMojo.execute();
             fail();
@@ -107,15 +115,17 @@ public class TestLi3TestMojo
     public void testFailOnLi3TestSingleException() throws IOException, InterruptedException, MojoExecutionException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 1 exception\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         try {
             testingMojo.execute();
             fail();
@@ -130,15 +140,17 @@ public class TestLi3TestMojo
     public void testFailOnLi3TestNotFullPasses() throws IOException, InterruptedException, MojoExecutionException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("38 / 39 passes\n1 fail and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         try {
             testingMojo.execute();
             fail();
@@ -153,13 +165,15 @@ public class TestLi3TestMojo
     public void testExceutionExceptionOnLi3ProcessNotStarting() throws IOException, InterruptedException, MojoFailureException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expectLastCall().andThrow(new IOException());
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         try {
             testingMojo.execute();
             fail();
@@ -174,15 +188,17 @@ public class TestLi3TestMojo
     public void testExceutionExceptionOnLi3ProcessInterrupted() throws IOException, InterruptedException, MojoFailureException
     {
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
-        File baseDir = new File(".");
-        mockProcessBuilderWrapper.runWith(baseDir.getCanonicalPath() + "/libraries/lithium/console/li3", "app/tests");
+        File li3ScriptPath = new File("./li3");
+        File li3TestPath = new File("./app/tests");
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath());
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("39 / 39 passes\n0 fails and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
         expectLastCall().andThrow(new InterruptedException());
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-        testingMojo.setBaseDir(baseDir);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3TestPath(li3TestPath);
         try {
             testingMojo.execute();
             fail();

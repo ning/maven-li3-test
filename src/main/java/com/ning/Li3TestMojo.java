@@ -35,6 +35,23 @@ public class Li3TestMojo extends AbstractMojo
     private Pattern failsPattern;
     private ProcessBuilderWrapper builderWrapper;
 
+     /**
+     * Location of the li3 Script.
+     *
+     * @parameter expression="${li3-test.li3-script-path}"
+     * @required
+     */
+    private File li3ScriptPath;
+
+    /**
+    * Location of the tests to run.
+    *
+    * @parameter expression="${li3-test.li3-test-path}"
+    * @required
+    */
+   private File li3TestPath;
+
+
     public Li3TestMojo()
     {
         this(new ProcessBuilderWrapper());
@@ -52,16 +69,9 @@ public class Li3TestMojo extends AbstractMojo
     {
         boolean failed = false;
         List<String> command = new ArrayList<String>();
-        String pathString;
+
         try {
-            pathString = baseDir.getCanonicalPath() + "/libraries/lithium/console/li3";
-        }
-        catch (IOException e) {
-            throw new MojoExecutionException("Couldn't get the canonical path of the basedir that we're running li3 tests in");
-        }
-        
-        try {
-            builderWrapper.runWith(pathString, "app/tests");
+            builderWrapper.runWith(this.li3ScriptPath.getCanonicalPath(), this.li3TestPath.getCanonicalPath());
             BufferedReader input = new BufferedReader(new InputStreamReader(builderWrapper.getInputStream()));
             BufferedReader error = new BufferedReader(new InputStreamReader(builderWrapper.getErrorStream()));
             String line;
@@ -119,7 +129,11 @@ public class Li3TestMojo extends AbstractMojo
         return false;
     }
 
-    public void setBaseDir(File baseDir){
-        this.baseDir = baseDir;
+    public void setLi3ScriptPath(File li3ScriptPath){
+        this.li3ScriptPath = li3ScriptPath;
+    }
+
+    public void setLi3TestPath(File li3TestPath){
+        this.li3TestPath = li3TestPath;
     }
 }
