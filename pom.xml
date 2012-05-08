@@ -1,21 +1,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <groupId>ning.maven</groupId>
-        <artifactId>base</artifactId>
-        <version>1.8.1</version>
-        <relativePath />
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.ning</groupId>
+    <groupId>com.ning.maven.plugins</groupId>
     <artifactId>li3-test</artifactId>
     <packaging>maven-plugin</packaging>
     <version>0.0.9-SNAPSHOT</version>
     <name>li3-test Maven Mojo</name>
-    <url>http://maven.apache.org</url>
+    <description>
+        A Maven testing mojo which runs tests for the lithium PHP framework and fails if they fail in specific ways by
+        searching through the output.
+    </description>
+    <url>https://github.com/ning/maven-duplicate-finder-plugin</url>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <scm>
-        <connection>scm:git:ssh://scm@source.ninginc.com/maven-plugins-li3-test</connection>
-        <url>http://git.source.ninginc.com/maven-plugins-li3-test.git</url>
+        <connection>scm:git:git://github.com/ning/maven-li3-test-plugin.git</connection>
+        <developerConnection>scm:git:git://github.com/ning/maven-li3-test-plugin.git</developerConnection>
+        <url>https://github.com/ning/maven-li3-test-plugin</url>
     </scm>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -35,17 +49,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>dev-repo</id>
-            <name>Ning Internal Repo</name>
-            <url>http://mavenrepo.ningops.net/nexus/content/repositories/plugins-releases-local</url>
-        </repository>
-        <!-- use the following if you ARE using a snapshot version. -->
-        <snapshotRepository>
-            <id>dev-repo</id>
-            <name>Ning Internal Snapshot Repo</name>
-            <url>http://mavenrepo.ningops.net/nexus/content/repositories/plugins-snapshots-local</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <developers>
+        <developer>
+            <id>phuff</id>
+            <name>Paul Huff</name>
+            <url>http://phuff.org</url>
+            <timezone>-7</timezone>
+        </developer>
+    </developers>
 </project>

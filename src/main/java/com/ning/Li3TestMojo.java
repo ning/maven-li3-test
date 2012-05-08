@@ -38,7 +38,7 @@ public class Li3TestMojo extends AbstractMojo
      /**
      * Location of the li3 Script.
      *
-     * @parameter expression="${li3-test.li3-script-path}"
+     * @parameter expression="${li3-test.li3ScriptPath}"
      * @required
      */
     private File li3ScriptPath;
@@ -46,7 +46,7 @@ public class Li3TestMojo extends AbstractMojo
     /**
     * Location of the tests to run.
     *
-    * @parameter expression="${li3-test.li3-test-path}"
+    * @parameter expression="${li3-test.li3TestPath}"
     * @required
     */
    private File li3TestPath;
