@@ -23,9 +23,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/ning/maven-li3-test-plugin.git</connection>
-        <developerConnection>scm:git:git://github.com/ning/maven-li3-test-plugin.git</developerConnection>
-        <url>https://github.com/ning/maven-li3-test-plugin</url>
+        <connection>scm:git:git://github.com/ning/maven-li3-test.git</connection>
+        <developerConnection>scm:git:git://github.com/ning/maven-li3-test.git</developerConnection>
+        <url>https://github.com/ning/maven-li3-test</url>
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
