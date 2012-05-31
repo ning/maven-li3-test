@@ -44,14 +44,13 @@ public class Li3TestMojo extends AbstractMojo
     */
    private File li3TestPath;
 
-
     /**
-     * Working directory of li3 base if null uses the default
-     *
-     * @paramter expression="${li3-test.li3WorkingDirectory}"
-     *
-     */
-    private File li3WorkingDirectory;
+    * Li3 base directory
+    *
+    * @parameter expression="${li3-test.li3WorkingDirectory}"
+    * @required
+    */
+   private File li3WorkingDirectory;
 
     public Li3TestMojo()
     {
@@ -72,7 +71,6 @@ public class Li3TestMojo extends AbstractMojo
         List<String> command = new ArrayList<String>();
 
         try {
-            log.info(li3ScriptPath.getCanonicalPath() + " " + li3TestPath.getCanonicalPath() + " " + li3WorkingDirectory);
             builderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
             BufferedReader input = new BufferedReader(new InputStreamReader(builderWrapper.getInputStream()));
             BufferedReader error = new BufferedReader(new InputStreamReader(builderWrapper.getErrorStream()));
