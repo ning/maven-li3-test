@@ -44,15 +44,19 @@ public class TestLi3TestMojo
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File li3ScriptPath = new File("./li3");
         File li3TestPath = new File("./app/tests");
-        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), null);
+        File li3WorkingDirectory = new File("./src/main/php/");
+
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("2 fails and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
-testingMojo.setLi3ScriptPath(li3ScriptPath);
+        testingMojo.setLi3ScriptPath(li3ScriptPath);
         testingMojo.setLi3TestPath(li3TestPath);
+        testingMojo.setLi3WorkingDirectory(li3WorkingDirectory);
+
         try {
             testingMojo.execute();
             fail();
@@ -69,7 +73,9 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File li3ScriptPath = new File("./li3");
         File li3TestPath = new File("./app/tests");
-        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), null);
+        File li3WorkingDirectory = new File("./src/main/php/");
+
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 4 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
@@ -78,6 +84,8 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setLi3ScriptPath(li3ScriptPath);
         testingMojo.setLi3TestPath(li3TestPath);
+        testingMojo.setLi3WorkingDirectory(li3WorkingDirectory);
+
         try {
             testingMojo.execute();
             fail();
@@ -94,7 +102,9 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File li3ScriptPath = new File("./li3");
         File li3TestPath = new File("./app/tests");
-        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), null);
+        File li3WorkingDirectory = new File("./src/main/php/");
+
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("1 fail and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
@@ -103,6 +113,8 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setLi3ScriptPath(li3ScriptPath);
         testingMojo.setLi3TestPath(li3TestPath);
+        testingMojo.setLi3WorkingDirectory(li3WorkingDirectory);
+
         try {
             testingMojo.execute();
             fail();
@@ -119,7 +131,9 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File li3ScriptPath = new File("./li3");
         File li3TestPath = new File("./app/tests");
-        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), null);
+        File li3WorkingDirectory = new File("./src/main/php/");
+
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("0 fails and 1 exception\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
@@ -128,6 +142,8 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setLi3ScriptPath(li3ScriptPath);
         testingMojo.setLi3TestPath(li3TestPath);
+        testingMojo.setLi3WorkingDirectory(li3WorkingDirectory);
+
         try {
             testingMojo.execute();
             fail();
@@ -144,7 +160,9 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File li3ScriptPath = new File("./li3");
         File li3TestPath = new File("./app/tests");
-        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), null);
+        File li3WorkingDirectory = new File("./src/main/php/");
+
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("38 / 39 passes\n1 fail and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
@@ -153,6 +171,8 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setLi3ScriptPath(li3ScriptPath);
         testingMojo.setLi3TestPath(li3TestPath);
+        testingMojo.setLi3WorkingDirectory(li3WorkingDirectory);
+
         try {
             testingMojo.execute();
             fail();
@@ -169,13 +189,17 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File li3ScriptPath = new File("./li3");
         File li3TestPath = new File("./app/tests");
-        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), null);
+        File li3WorkingDirectory = new File("./src/main/php/");
+
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
         expectLastCall().andThrow(new IOException());
 
         replay(mockProcessBuilderWrapper);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setLi3ScriptPath(li3ScriptPath);
         testingMojo.setLi3TestPath(li3TestPath);
+        testingMojo.setLi3WorkingDirectory(li3WorkingDirectory);
+
         try {
             testingMojo.execute();
             fail();
@@ -192,7 +216,9 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         ProcessBuilderWrapper mockProcessBuilderWrapper = createMock(ProcessBuilderWrapper.class);
         File li3ScriptPath = new File("./li3");
         File li3TestPath = new File("./app/tests");
-        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), null);
+        File li3WorkingDirectory = new File("./src/main/php/");
+
+        mockProcessBuilderWrapper.runWith(li3ScriptPath.getCanonicalPath(), li3TestPath.getCanonicalPath(), li3WorkingDirectory);
         expect(mockProcessBuilderWrapper.getInputStream()).andReturn(getInputReaderFromString("39 / 39 passes\n0 fails and 0 exceptions\n"));
         expect(mockProcessBuilderWrapper.getErrorStream()).andReturn(getInputReaderFromString(""));
         mockProcessBuilderWrapper.waitFor();
@@ -201,6 +227,8 @@ testingMojo.setLi3ScriptPath(li3ScriptPath);
         Li3TestMojo testingMojo = new Li3TestMojo(mockProcessBuilderWrapper);
         testingMojo.setLi3ScriptPath(li3ScriptPath);
         testingMojo.setLi3TestPath(li3TestPath);
+        testingMojo.setLi3WorkingDirectory(li3WorkingDirectory);
+
         try {
             testingMojo.execute();
             fail();
