@@ -8,7 +8,7 @@
     <groupId>com.ning.maven.plugins</groupId>
     <artifactId>li3-test</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.0.10-SNAPSHOT</version>
+    <version>0.0.10</version>
     <name>li3-test Maven Mojo</name>
     <description>
         A Maven testing mojo which runs tests for the lithium PHP framework and fails if they fail in specific ways by
