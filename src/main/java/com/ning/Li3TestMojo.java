@@ -22,13 +22,6 @@ import java.util.regex.Pattern;
  */
 public class Li3TestMojo extends AbstractMojo
 {
-    /**
-     * Location of the file.
-     *
-     * @parameter expression="${basedir}"
-     * @required
-     */
-    private File baseDir;
 
     private Log log;
     private Pattern passesPattern;
@@ -52,6 +45,14 @@ public class Li3TestMojo extends AbstractMojo
    private File li3TestPath;
 
 
+    /**
+     * Working directory of li3 base if null uses the default
+     *
+     * @paramter expression="${li3-test.li3TestPath}"
+     *
+     */
+    private File li3WorkingDirectory;
+
     public Li3TestMojo()
     {
         this(new ProcessBuilderWrapper());
@@ -71,7 +72,7 @@ public class Li3TestMojo extends AbstractMojo
         List<String> command = new ArrayList<String>();
 
         try {
-            builderWrapper.runWith(this.li3ScriptPath.getCanonicalPath(), this.li3TestPath.getCanonicalPath());
+            builderWrapper.runWith(this.li3ScriptPath.getCanonicalPath(), this.li3TestPath.getCanonicalPath(), this.li3WorkingDirectory);
             BufferedReader input = new BufferedReader(new InputStreamReader(builderWrapper.getInputStream()));
             BufferedReader error = new BufferedReader(new InputStreamReader(builderWrapper.getErrorStream()));
             String line;
@@ -135,5 +136,10 @@ public class Li3TestMojo extends AbstractMojo
 
     public void setLi3TestPath(File li3TestPath){
         this.li3TestPath = li3TestPath;
+    }
+
+    public void setLi3WorkingDirectory(File li3WorkingDirectory)
+    {
+        this.li3WorkingDirectory = li3WorkingDirectory;
     }
 }
